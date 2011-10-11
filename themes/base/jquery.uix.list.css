@@ -1,0 +1,66 @@
+.ui-list {
+	font-size: 0.9em;
+}
+.ui-list .ui-widget-header {
+	padding: 0px 10px;
+}
+.ui-list ul:focus {
+	outline: 1px solid #FFDD00;
+}
+.ui-list .ui-list-content {
+	margin:0;
+	padding:0;
+}
+
+.ui-list .ui-no-border-top {
+	border-top: 0px;
+}
+
+.ui-list li.ui-list-group {
+	list-style-type: none;
+	margin:0px;
+	padding:0px;
+}
+.ui-list .ui-list-group .ui-list-group-title {
+	padding: 0 10px;
+	color: #1750AB;
+	font-weight: bold;
+}
+.ui-list .ui-list-group-content {
+	margin:0px;
+	padding:0px;
+}
+.ui-list li.ui-list-item {
+	list-style-type: none;
+	padding: 0 10px;
+	margin: 0;
+
+	background: #F5F8F9;
+	color: #1750AB;
+	border:1px solid #F5F8F9;
+}
+.ui-list .ui-list-group-content li.ui-list-item {
+	padding: 0 30px;
+}
+.ui-list  .ui-list-content li.ui-state-hover {
+	background: #E5E9EF;
+	border:1px solid #E5E9EF;
+	color: #1750AB;
+}
+.ui-list  .ui-list-content li.ui-selected {
+	background: #1750AB;
+	color: #F5F8F9;
+	font-weight: normal;
+	border:1px solid #1750AB;
+}
+.ui-list  .ui-list-content li.ui-state-focus {
+	border: 1px dashed #1750AB;
+}
+.ui-list  .ui-list-content li.ui-state-focus.ui-selected {
+	border: 1px dashed #FFFFFF;
+}
+.ui-list  .ui-list-content span {
+	-moz-user-select:none;
+	-webkit-user-select:none;
+	-khtml-user-select:none;
+}
