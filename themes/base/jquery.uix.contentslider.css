@@ -1,0 +1,56 @@
+.uix-slider {
+	padding: 0.2em;
+}
+.uix-slider-wrapper {
+	position: relative;
+	overflow: hidden;
+	padding-left: 0.6em;
+}
+.uix-slider-menu {
+	list-style: none outside none;
+	position: absolute;
+	margin:0;
+	margin-left: 0.4em;
+	padding:0;
+}
+.uix-slider-menu-link {
+	padding: 0.5em 1em;
+	display: block;
+}
+.uix-slider-menu-itm .ui-icon {
+	float: left;
+	margin-top: 5px;
+}
+.uix-slider-menu-itm { 
+	margin:0.2em;
+}
+/*.uix-state-focus a {}*/
+.uix-slider-content {
+	position: relative;
+	overflow: auto;
+	margin:0;
+	padding:0;
+	left: -0.6em;
+}
+.uix-slide-default {
+	position: absolute;
+	display: none;
+}
+.uix-slide-active {
+	position: relative;
+	width: auto;
+}
+
+/* mirror */
+.uix-slider-mirror .uix-slider-wrapper {
+	padding-left: 0px;
+	padding-right: 0.6em !important; 
+}
+.uix-slider-mirror .uix-slider-menu {
+	left:0px !important;
+	margin: 0px;
+}
+.uix-slider-mirror .uix-slider-content {
+	margin-left: 0.4em;
+	left:0 !important;
+}

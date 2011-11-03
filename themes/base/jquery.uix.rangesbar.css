@@ -1,0 +1,68 @@
+/**
+ * jQuery UIx List	1.0.0
+ *
+ * Copyright 2011, Jonathan Vitela
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * Depends:
+ *	jquery.ui.core.js
+ *	jquery.ui.widget.js
+ *	jquery.ui.mouse.js
+ *
+ *	http://dev.aol.com/dhtml_style_guide#listbox
+ *
+ *	TODO:
+ *		- disable/enable widget
+ */
+ 
+ .ui-rangesbar {
+	height:15px;
+	position:relative;
+ }
+ 
+.ui-rangesbar .ui-range-body {
+	height:15px;
+	border:0;
+ }
+.ui-rangesbar .ui-range {
+}
+ 
+.ui-rangesbar .ui-range .ui-resizable-handle{
+}
+.ui-rangesbar .ui-range .ui-resizable-w { }
+.ui-rangesbar .ui-range .ui-resizable-e {  }
+
+.ui-rangesbar-helper {
+	height: 15px;
+	border:0;
+}
+
+.ui-rangesbar .ui-range button.ui-button-icon-only {
+    width: 1.01em;
+	float: right;
+	position: relative;
+	right: -12px;
+	top: -20px;
+	z-index:100;
+}
+
+.ui-label {
+	float:left;
+    float: left;
+    font-size: 0.7em;
+    font-weight: bold;
+    line-height: 15px;
+    margin-left: 0.7em;
+}
+
+.ui-range-label-left {
+	position:absolute;
+	left:0px;
+	font-size: 0.7em;
+}
+.ui-range-label-right {
+	position:absolute;
+	right:0px;
+	font-size: 0.7em;
+}

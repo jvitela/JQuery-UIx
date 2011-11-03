@@ -1,0 +1,23 @@
+.ui-panoram {
+	padding: 0;
+	position:absolute;
+	border: 0px !important;
+}
+.ui-panoram-clipper {
+	overflow:hidden;
+	cursor: move;
+}
+.ui-panoram-container {
+	position: relative;
+	left: 0px; top: 0px;
+	overflow: hidden;
+	border: 1px solid transparent;
+}
+.ui-panoram-selected {
+	border: 1px dotted black;
+}
+.ui-panoram-loader {
+	width: 100%;
+	background: #EEEEFF url('loader.gif') no-repeat center center;
+}
+
