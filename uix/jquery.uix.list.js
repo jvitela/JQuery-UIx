@@ -13,9 +13,13 @@
  *	http://dev.aol.com/dhtml_style_guide#listbox
  *
  *	TODO:
- *		- disable/enable widget
+ *		- disable/enable widget	OK!
+ *		- add/delete rows		
+ *		- checkable list items
+ *		- search
  */
 (function( $, undefined ) {
+
 $.widget("uix.list", $.ui.mouse, {
 	options: {
 		multiselect:	false,
@@ -26,22 +30,30 @@ $.widget("uix.list", $.ui.mouse, {
 		distance: 0,
 		// Styles can be redefined here
 		style : {
+			disabled:		"ui-list-disabled ui-state-disabled",
 			item: {
-				element:	"ui-list-item",
-				selected:	"ui-selected",
+				element:	"ui-list-item ui-state-default",
+				selected:	"ui-selected ui-state-active",
 				focus:		"ui-state-focus",
 				hover:		"ui-state-hover"
 			},
 			group : {
 				element: 	"ui-list-group",
-				title:		"ui-list-group-title",
+				title:		"ui-list-group-title ui-widget-header",
 				content:	"ui-list-group-content",
 			},
-			element:		"ui-widget-content ui-list-content",
-			"no-header" :	"ui-corner-all",
-			"with-header":	"ui-corner-bl ui-corner-br",
-			header:			"ui-widget-header ui-corner-tl ui-corner-tr",
-			wrapper:		"ui-widget ui-list"
+			// element
+			list : {
+				wrapper:	"ui-widget-content",
+				noHeader:	"ui-corner-all",
+				withHeader:	"ui-corner-bl ui-corner-br",
+				element:	"ui-list-body ui-widget-content",
+			},
+			wrapper : {
+				element: "ui-widget ui-list",
+				focus:	"ui-state-focus ui-corner-all"
+			},
+			header: "ui-widget-header ui-corner-tl ui-corner-tr"
 		}
 	},
 	_create: function() {
@@ -54,33 +66,46 @@ $.widget("uix.list", $.ui.mouse, {
 		this.dir	= 0;
 
 		var style = this.options.style;
-		this.element.addClass(style.element).attr("tabindex",0);
-		this.wrapper = $("<div></div>").addClass( style.wrapper );
-		this.element.wrap( this.wrapper );
+		var wrapper = $("<div></div>").addClass( style.wrapper.element ).attr("tabindex",0);
+		if( this.options.disabled )
+			wrapper.addClass(style.disabled);
+		var content = $("<div></div>").addClass( style.list.wrapper );
+		content = this.element.wrap( content ).parent(); // wrapInner
+		wrapper = content.wrap( wrapper ).parent();
+		this.element.addClass(style.list.element);
 		if( this.options.header==false ) {
-			this.element.addClass(style["no-header"]);
+			content.addClass(style.list.noHeader);
 		}
 		else {
-			this.header = $("<div></div>").addClass(style.header).append( this.options.header );
-			this.element
-				.addClass(style["width-header"])
+			header = $("<div></div>").addClass(style.header).append( this.options.header );
+			content
+				.addClass( style.list.withHeader )
 				.css("border-top","0px")
-				.before( this.header );
+				.before( header );
 		}
-		this.element
+		wrapper
+			.focus($.proxy(function(){ 
+				wrapper.addClass(style.wrapper.focus); 
+				this._focus(true);
+			},this))
+			.blur($.proxy(function(){
+				wrapper.removeClass(style.wrapper.focus); 
+				this._focus(false);
+			},this))
 			.keydown( $.proxy(this,'_onKeyPress') )
-			.keyup( $.proxy(this,'_getKeys') )
-			.focus($.proxy(function(){this._focus(true);},this))
-			.blur($.proxy(function(){this._focus(false);},this));
+			.keyup( $.proxy(this,'_getKeys') );
 
 		this.refresh();
 		this._mouseInit();
 	},
 	_mouseStart : function(event) {
+		if( this.options.disabled ) return false;
 		if( event.target.tagName!="LI" ) 
 			event.target = $(event.target).parents("li").get(0);
 		var currIdx	= this.items.index(event.target);
-		if( currIdx<0 ) return;
+		if( currIdx<0 ) {
+			return;
+		}
 		if( this.ctrl ) {
 			this._toggle(currIdx);
 		}
@@ -88,14 +113,16 @@ $.widget("uix.list", $.ui.mouse, {
 			this._focus(currIdx);
 			this._sel(currIdx);
 		}
-		this.element.focus();
+		this.element.parents(".ui-list").focus();
 	},
 	_mouseDrag: function(event) {
 		// do not select if ctrl key is pressed
 		if( this.options.multiselect && !this.ctrl ) {
 			if( event.target.tagName!="LI" )
 				event.target = $(event.target).parents("li").get(0);
-			if( !event.target ) return;
+			if( !event.target ) {
+				return;
+			}
 			var currIdx	= this.items.index(event.target);			
 			if( currIdx<0 )
 				return;
@@ -106,8 +133,10 @@ $.widget("uix.list", $.ui.mouse, {
 	},
 	_mouseStop: function(event) {
 		this.shift = false;
+		this.element.trigger("listselectionchange");
 	},
 	_getKeys : function(event) {
+		if( this.options.disabled ) return false;
 		if( this.options.multiselect ) {
 			this.shift = event.shiftKey;
 			this.ctrl = event.ctrlKey;
@@ -115,6 +144,7 @@ $.widget("uix.list", $.ui.mouse, {
 		this.dir = event.which;
 	},
 	_onKeyPress : function(event) {
+		if( this.options.disabled ) return false;
 		this._getKeys(event);
 		//  9 tab
 		// 38 up
@@ -158,36 +188,48 @@ $.widget("uix.list", $.ui.mouse, {
 			else
 				this._focus(this._sel(this._focus()+(this.lastSelIdx<0?0:1)));
 		}
+        else {
+            return true; // true to allow event propagation
+        }
+        this.element.trigger("listselectionchange");
+        return true;		
 		//console.log(event.which);
 		//console.log(event.shiftKey);
 	},
 	_focus : function(idx) {
+		if( this.options.disabled ) return false;
 		var style = this.options.style;
 		// Getter
 		if( arguments.length<1 ) return this.focusedIdx;
 		// SETTER/UNSETTER
 		if( typeof idx=="boolean" ) {
 			// SET
-			if( idx==false )
+			if( idx==false ) {
 				this.items.eq(this.focusedIdx).removeClass(style.item.focus);
+			}
 			// UNSET
-			else if( idx==true )
+			else if( idx==true ) {
 				this.items.eq(this.focusedIdx).addClass(style.item.focus);
+			}
 			return;
 		}
 		// validate index
 		if( idx<0 ) idx=0;
 		else if( idx>=this.items.length ) idx = this.items.length-1;
 		// Setter
-		this.items.eq(this.focusedIdx).removeClass(style.item.focus); // remove previous focus
-		this.items.eq(idx).addClass(style.item.focus); // set new focus
+		// remove previous focus
+		this.items.eq(this.focusedIdx).removeClass(style.item.focus);
+		// set new focus
+		this.items.eq(idx).addClass(style.item.focus);
 		this.focusedIdx = idx;
 		// this is for multiple selection
 		if( !this.shift )
 			this.lastSelIdx = idx;
+
 		return idx;
 	},
 	_sel : function(idx) {
+		if( this.options.disabled ) return false;
 		var style = this.options.style;
 		// Getter
 		if( arguments.length<1 ) return this.selectedIdx;
@@ -195,7 +237,8 @@ $.widget("uix.list", $.ui.mouse, {
 		if( idx<0 ) idx=0;
 		else if( idx>=this.items.length ) idx = this.items.length-1;
 		// Setter
-		this.items.removeClass(style.item.selected); // unselect previous
+		// unselect previous
+		this.items.removeClass(style.item.selected);
 		if( this.shift ) {
 			if( this.lastSelIdx==-1 ) this.lastSelIdx=0;
 			if( idx<this.lastSelIdx ) {
@@ -210,18 +253,26 @@ $.widget("uix.list", $.ui.mouse, {
 
 		this.items.eq(idx).addClass(style.item.selected);
 		this.selectedIdx = idx;
+
 		return idx;
 	},
 	_toggle : function(idx) {
+		if( this.options.disabled ) return false;
 		var style = this.options.style;
-		this.items.eq( this._focus() ).removeClass(style.item.focus);
-		this.items.eq(idx).toggleClass(style.item.selected).addClass(style.item.focus);
+		this.items.eq( this._focus() )
+			.removeClass(style.item.focus);
+		this.items.eq(idx)
+			.toggleClass(style.item.selected)
+			.addClass(style.item.focus);
 		this.selectedIdx = idx;
 		this.focusedIdx = idx;
 		this.lastSelIdx = idx;
 	},
 	refresh : function(){
 		var style = this.options.style;
+		var o = this.options;
+		if( this.items )
+			this.items.unbind("hover");
 		var items = $([]);
 		this.element.children().each(function(idx,itm){
 			var $itm = $(itm);
@@ -238,13 +289,27 @@ $.widget("uix.list", $.ui.mouse, {
 		items
 			.addClass(style.item.element)
 			.hover(
-				function(){$(this).addClass(style.item.hover);},
-				function(){$(this).removeClass(style.item.hover);}
+				function(){ if( !o.disabled ) $(this).addClass(style.item.hover); },
+				function(){ if( !o.disabled ) $(this).removeClass(style.item.hover); }
 			);
 		this.items = items;
 	},
 	size : function() {
 		return this.items.length;
+	},
+	enable: function() {
+		var style = this.options.style;
+		this.options.disabled = false;
+		this.element.parent().parent()
+			.attr("tabindex",0)
+			.removeClass(style.disabled);
+	},
+	disable: function() {
+		var style = this.options.style;
+		this.options.disabled = true;
+		this.element.parent().parent()
+			.removeAttr("tabindex")
+			.addClass(style.disabled);
 	}
 });
 
