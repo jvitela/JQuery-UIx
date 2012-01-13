@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 4.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>jVitela 2.0</title>
+		<link type="text/css" href="../css/960.css" rel="stylesheet" media="screen"/>
+		<!--link type="text/css" href="../css/themes/smoothness/jquery-ui-1.8.16.css" rel="stylesheet"/-->
+		<link rel="stylesheet" href="http://code.jquery.com/ui/jquery-ui-git.css">
+		<link type="text/css" href="../../themes/base/jquery.uix.contentslider.css" rel="stylesheet"/>
+		<style type="text/css">
+			Body {
+				font-size: 0.9em;
+			}
+		</style>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="../../uix/jquery.uix.contentslider.js"></script>
+		<style type="text/css">
+			body{ font: 62.5% Verdana, sans-serif; margin: 50px;}
+			h2 { 
+				margin: 0px;
+				padding: 5px 15px;
+			}
+			/*#MySlideShow .ui-slider-content { background: #FFF; }*/
+			#MySlideShow .uix-slider-content div { background: #FFF; }
+
+			#esp { color: #700; padding: 5px 15px; border: 2px solid #FAA; }
+			#esp h2{background: #FAA; }
+                        #fra { color: #909; padding: 5px 15px; border: 2px solid #FAF; }
+			#fra h2{background: #FAF; }
+                        #ger { color: #009; padding: 5px 15px; border: 2px solid #AAF; }
+			#ger h2{background: #AAF; }
+                        #eng { color: #090; padding: 5px 15px; border: 2px solid #AFA; }
+			#eng h2{background: #AFA; }
+		</style>
+		<script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" src="../js/jquery-ui-1.8.4.min.js"></script>
+		<!--script type="text/javascript" src="../js/themes/ext/uix.js"></script-->
+		<script type="text/javascript" src="../js/uix/contentslider.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$('#MySlideShow').contentslider({
+					selected: 2,
+					icons: {
+						header: "ui-icon-circle-arrow-e",
+						headerSelected: "ui-icon-circle-arrow-s"
+					}
+				});
+				$('#btnDestroy').click(function() {
+					//$('#MySlideShow').contentslider('destroy');
+					themeRoller();
+				});
+				$('#wrapper').dialog({
+					minHeight: 350,
+					height: 500,
+					minWidth: 500,
+					width: 600,
+					buttons: {
+						'Button 01' : function(){},
+						'Button 02' : function(){}
+					}
+				});
+			});
+			function themeRoller(){if (!/Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent)){alert('Sorry, due to security restrictions, this tool only works in Firefox'); return false; }; if(window.jquitr){ jquitr.addThemeRoller(); } else{ jquitr = {}; jquitr.s = document.createElement('script'); jquitr.s.src = 'http://jqueryui.com/themeroller/developertool/developertool.js.php'; document.getElementsByTagName('head')[0].appendChild(jquitr.s);} };
+		</script>
+	</head>
+	<body>
+		<div class="demo">
+			<div id="wrapper" title="Dialog">
+			<div id="MySlideShow">
+				<ul>
+					<li><a href="#esp">Espa&ntilde;ol</a></li>
+					<li><a href="#eng">English</a></li>
+					<li><a href="#ger">Deutsch</a></li>
+					<li><a href="#fra">Fran&ccedil;ais</a></li>
+				</ul>
+				<Div id="esp">
+					<h2>Hola Mundo</h2>
+					<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eleifend. Nunc quis ipsum ut eros 
+					molestie posuere. Curabitur non leo. Nam pharetra tempus massa. Duis ut libero. 
+					Nunc gravida. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
+					Pellentesque non arcu ut lacus auctor dignissim. Nulla eu justo at lectus vehicula sagittis. 
+					Suspendisse diam. Aenean eu sapien eget risus faucibus tempus. Suspendisse a arcu. 
+					Duis urna metus, adipiscing quis, tincidunt sit amet, viverra euismod, enim. 
+					Quisque vitae justo ut mauris ullamcorper pellentesque. Lorem ipsum dolor sit amet, consectetur adipiscing 
+					elit. Sed elementum velit a ligula. Etiam a ante. Mauris lorem nisl, dignissim vel, auctor ut, 
+					dictum sed, nisi. Morbi et lorem id tellus pellentesque ultrices. Donec risus diam, imperdiet dapibus, 
+					ornare sollicitudin, sollicitudin eget, ligula.
+					</p>
+					<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eleifend. Nunc quis ipsum ut eros 
+					molestie posuere. Curabitur non leo. Nam pharetra tempus massa. Duis ut libero. 
+					Nunc gravida. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
+					Pellentesque non arcu ut lacus auctor dignissim. Nulla eu justo at lectus vehicula sagittis. 
+					Suspendisse diam. Aenean eu sapien eget risus faucibus tempus. Suspendisse a arcu. 
+					Duis urna metus, adipiscing quis, tincidunt sit amet, viverra euismod, enim. 
+					Quisque vitae justo ut mauris ullamcorper pellentesque. Lorem ipsum dolor sit amet, consectetur adipiscing 
+					elit. Sed elementum velit a ligula. Etiam a ante. Mauris lorem nisl, dignissim vel, auctor ut, 
+					dictum sed, nisi. Morbi et lorem id tellus pellentesque ultrices. Donec risus diam, imperdiet dapibus, 
+					ornare sollicitudin, sollicitudin eget, ligula.
+					</p>
+				</Div>
+				<Div id="eng">
+					<h2>Hello World</h2>
+					<p>
+					Aliquam libero diam, placerat vitae, tempor ac, ultricies eu, velit.<br/> Fusce magna dui, adipiscing id, 
+					fringilla vel, auctor et, felis. Mauris vel felis sed risus tincidunt ultrices.<br/> In ornare. Phasellus 
+					turpis.<br/> Nulla facilisi.<br/> Pellentesque malesuada, nulla sit amet dapibus rutrum, lacus metus eleifend dui, 
+					sed sagittis enim arcu vitae magna.<br/> In sit amet lorem quis sapien iaculis accumsan.<br/> Sed mauris nisi, 
+					tempus quis, dignissim eget, ultrices vitae, nisi.<br/> Vestibulum arcu.<br/> Integer quis augue porttitor risus 
+					dapibus tempus.<br/> Maecenas in nisl.<br/> Donec tellus justo, dictum nec, egestas at, vehicula non, dolor.<br/> 
+					Cras mi leo, faucibus ut, accumsan sit amet, placerat iaculis, ligula.<br/> Suspendisse eget metus.
+					</p>
+				</Div>
+				<Div id="ger">
+					<h2>Halo Welt</h2>
+					<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eleifend. Nunc quis ipsum ut eros molestie 
+					posuere. Curabitur non leo. Nam pharetra tempus massa. Duis ut libero. Nunc gravida. Pellentesque 
+					habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque non arcu 
+					ut lacus auctor dignissim. Nulla eu justo at lectus vehicula sagittis. Suspendisse diam. Aenean eu 
+					sapien eget risus faucibus tempus. Suspendisse a arcu. Duis urna metus, adipiscing quis, tincidunt sit 
+					amet, viverra euismod, enim. Quisque vitae justo ut mauris ullamcorper pellentesque. Lorem ipsum dolor 	
+					sit amet, consectetur adipiscing elit. Sed elementum velit a ligula. Etiam a ante. Mauris lorem nisl, 
+					dignissim vel, auctor ut, dictum sed, nisi. Morbi et lorem id tellus pellentesque ultrices. Donec risus 
+					diam, imperdiet dapibus, ornare sollicitudin, sollicitudin eget, ligula.
+					</p>
+					<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eleifend. Nunc quis ipsum ut eros molestie 
+					posuere. Curabitur non leo. Nam pharetra tempus massa. Duis ut libero. Nunc gravida. Pellentesque 
+					habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque non arcu 
+					ut lacus auctor dignissim. Nulla eu justo at lectus vehicula sagittis. Suspendisse diam. Aenean eu 
+					sapien eget risus faucibus tempus. Suspendisse a arcu. Duis urna metus, adipiscing quis, tincidunt sit 
+					amet, viverra euismod, enim. Quisque vitae justo ut mauris ullamcorper pellentesque. Lorem ipsum dolor 	
+					sit amet, consectetur adipiscing elit. Sed elementum velit a ligula. Etiam a ante. Mauris lorem nisl, 
+					dignissim vel, auctor ut, dictum sed, nisi. Morbi et lorem id tellus pellentesque ultrices. Donec risus 
+					diam, imperdiet dapibus, ornare sollicitudin, sollicitudin eget, ligula.
+					</p>
+					<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eleifend. Nunc quis ipsum ut eros molestie 
+					posuere. Curabitur non leo. Nam pharetra tempus massa. Duis ut libero. Nunc gravida. Pellentesque 
+					habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque non arcu 
+					ut lacus auctor dignissim. Nulla eu justo at lectus vehicula sagittis. Suspendisse diam. Aenean eu 
+					sapien eget risus faucibus tempus. Suspendisse a arcu. Duis urna metus, adipiscing quis, tincidunt sit 
+					amet, viverra euismod, enim. Quisque vitae justo ut mauris ullamcorper pellentesque. Lorem ipsum dolor 	
+					sit amet, consectetur adipiscing elit. Sed elementum velit a ligula. Etiam a ante. Mauris lorem nisl, 
+					dignissim vel, auctor ut, dictum sed, nisi. Morbi et lorem id tellus pellentesque ultrices. Donec risus 
+					diam, imperdiet dapibus, ornare sollicitudin, sollicitudin eget, ligula.
+					</p>
+				</Div>
+				<Div id="fra">
+					<h2>Bonjour Monde</h2>
+					<p>
+					Aliquam libero diam, placerat vitae, tempor ac, ultricies eu, velit. Fusce magna dui, adipiscing id, 
+					fringilla vel, auctor et, felis. Mauris vel felis sed risus tincidunt ultrices. In ornare. Phasellus 
+					turpis. Nulla facilisi. Pellentesque malesuada, nulla sit amet dapibus rutrum, lacus metus eleifend dui, 
+					sed sagittis enim arcu vitae magna. In sit amet lorem quis sapien iaculis accumsan. Sed mauris nisi, 
+					tempus quis, dignissim eget, ultrices vitae, nisi. Vestibulum arcu. Integer quis augue porttitor risus 
+					dapibus tempus. Maecenas in nisl. Donec tellus justo, dictum nec, egestas at, vehicula non, dolor. Cras 
+					mi leo, faucibus ut, accumsan sit amet, placerat iaculis, ligula. Suspendisse eget metus.
+					</p>
+					<p>
+					Aliquam libero diam, placerat vitae, tempor ac, ultricies eu, velit. Fusce magna dui, adipiscing id, 
+					fringilla vel, auctor et, felis. Mauris vel felis sed risus tincidunt ultrices. In ornare. Phasellus 
+					turpis. Nulla facilisi. Pellentesque malesuada, nulla sit amet dapibus rutrum, lacus metus eleifend dui, 
+					sed sagittis enim arcu vitae magna. In sit amet lorem quis sapien iaculis accumsan. Sed mauris nisi, 
+					tempus quis, dignissim eget, ultrices vitae, nisi. Vestibulum arcu. Integer quis augue porttitor risus 
+					dapibus tempus. Maecenas in nisl. Donec tellus justo, dictum nec, egestas at, vehicula non, dolor. Cras 
+					mi leo, faucibus ut, accumsan sit amet, placerat iaculis, ligula. Suspendisse eget metus.
+					</p>
+				</Div>
+			</Div> <!-- Slideshow -->
+			</Div>
+			<br/>
+			<button id="btnDestroy">Theme Roller</button>
+			<br/>
+		</div> <!-- Demo -->
+	</body>
+</html>
+
