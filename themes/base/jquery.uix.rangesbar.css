@@ -17,24 +17,33 @@
  */
  
  .ui-rangesbar {
-	height:15px;
+	height:0.8em;
+	margin: 1.1em;
 	position:relative;
  }
  
 .ui-rangesbar .ui-range-body {
-	height:15px;
+	height:0.8em;
 	border:0;
  }
-.ui-rangesbar .ui-range {
-}
  
-.ui-rangesbar .ui-range .ui-resizable-handle{
-}
-.ui-rangesbar .ui-range .ui-resizable-w { }
-.ui-rangesbar .ui-range .ui-resizable-e {  }
-
+ .ui-rangesbar .ui-range-handle {
+    height: 1em;
+    width: 1em;
+    position: absolute;
+	top: -0.15em;
+    z-index: 2;
+ }
+ .ui-rangesbar .ui-range-right {
+	cursor: e-resize;
+	right:-0.5em;
+ }
+ .ui-rangesbar .ui-range-left {
+	cursor: w-resize;
+	left:-0.6em;
+ }
+ 
 .ui-rangesbar-helper {
-	height: 15px;
 	border:0;
 }
 
@@ -46,23 +55,114 @@
 	top: -20px;
 	z-index:100;
 }
-
-.ui-label {
-	float:left;
-    float: left;
-    font-size: 0.7em;
-    font-weight: bold;
-    line-height: 15px;
-    margin-left: 0.7em;
+.ui-range-label {
+	top: -3em;
+	padding:0.5em;
 }
-
 .ui-range-label-left {
 	position:absolute;
-	left:0px;
+	left: 0px;
 	font-size: 0.7em;
 }
 .ui-range-label-right {
 	position:absolute;
-	right:0px;
+	right: 0px;
 	font-size: 0.7em;
+}
+
+.ui-rangesbar ol, .ui-rangesbar li, .ui-rangesbar dl, .ui-rangesbar dd, .ui-rangesbar dt {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.ui-rangesbar ol, .ui-rangesbar dl {
+	position: relative;
+	top: 1.3em;
+	width: 100%;
+}
+.ui-rangesbar dt {
+	top: 1.5em;
+	position: absolute;
+	padding-top: .2em;
+	text-align: center;
+	border-bottom: 1px dotted #ddd;
+	height: .7em;
+	color: #999;
+}
+.ui-rangesbar dt span {
+	background: #fff;
+	padding: 0 .5em;
+}
+.ui-rangesbar li, .ui-rangesbar dd {
+	position: absolute;
+	overflow: visible;
+	color: #666;
+}
+.ui-rangesbar span.ui-rangesbar-label {
+	position: absolute;
+}
+.ui-rangesbar li span.ui-rangesbar-label, .ui-rangesbar dd span.ui-rangesbar-label {
+	display: none;
+	font-size: 0.6em;
+}
+.ui-rangesbar li span.ui-rangesbar-label-show, .ui-rangesbar dd span.ui-rangesbar-label-show {
+	display: block;
+}
+.ui-rangesbar span.ui-rangesbar-tic {
+	position: absolute;
+	left: 0;
+	height: .8em;
+	top: -1.3em;
+}
+.ui-rangesbar li span.ui-widget-content, .ui-rangesbar dd span.ui-widget-content {
+	border-right: 0;
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-top: 0;
+	border-bottom: 0;
+}
+/*.ui-rangesbar .first .ui-rangesbar-tic, .ui-rangesbar .last .ui-rangesbar-tic {
+	display: none;
+}*/
+
+.ui-rangesbar  .ui-rangesbar-tooltip {
+	display: block;
+	position: absolute;
+	bottom: 2.5em;
+	text-align: center;
+	padding: .3em .2em .4em;
+	font-size: .6em;
+	width: 8em;
+}
+.ui-rangesbar   .ui-range-right .ui-rangesbar-tooltip {
+	margin-right: -3.7em;
+}
+.ui-rangesbar   .ui-range-left .ui-rangesbar-tooltip {
+	margin-left: -3.7em;
+}
+
+.ui-rangesbar .ui-rangesbar-tooltip .ui-tooltip-pointer-down, .ui-rangesbar .ui-rangesbar-tooltip .ui-tooltip-pointer-down-inner {
+	position: absolute; 
+	display: block;
+	width:0; 
+	height:0; 
+	border-bottom-width: 0;
+	background: none;
+}
+.ui-rangesbar .ui-rangesbar-tooltip .ui-tooltip-pointer-down {	
+	border-left: 7px dashed transparent; 
+	border-right: 7px dashed transparent;
+	border-top-width: 8px;
+	bottom:	-8px;
+	right: auto;
+	left: 50%;
+	margin-left: -7px;
+}
+.ui-rangesbar .ui-rangesbar-tooltip .ui-tooltip-pointer-down-inner {
+	border-left: 6px dashed transparent; 
+	border-right: 6px dashed transparent;
+	border-top: 7px solid #fff;
+	bottom:	auto;
+	top: -9px;
+	left: -6px;
 }
