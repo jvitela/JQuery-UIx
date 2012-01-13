@@ -7,6 +7,10 @@
 		<!--link type="text/css" href="../../themes/optenet/jquery-ui.css" rel="stylesheet"/-->
 		<link type="text/css" href="../../themes/base/jquery.uix.rangesbar.css" rel="stylesheet"/>
 		<style type="text/css">
+			.demo {
+				background: #f9f9f9;
+				padding:2em;
+			}
 		</style>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
@@ -14,19 +18,43 @@
 		<script type="text/javascript">
 			$(function(){
 				$("#ranges").rangesbar();
-				//$("#ranges2").rangesbar();
-			});			
+				/*$('#ranges2').slider({
+					values: [10*15, 20*15, 30*15, 40*15],
+					min: 0,
+					max: 1440,
+					step: 15,					
+					slide: function(event,ui) {
+						//
+						var slider = $(this).data("slider");
+						var percent = function(val) {
+							var o = slider.options
+							return ( val - o.min ) / ( o.max - o.min ) * 100;
+						};
+						// get handler indexes
+						var first = $(ui.handle).data("index.ui-slider-handle")||0;
+						var scnd = first;
+						if( first%2 ) first--; else scnd++;
+						
+						var range = parseInt( first/2 );
+						var x1 = percent(ui.values[first]);
+						var x2 = percent(ui.values[scnd]);
+						
+						// resize range
+						$(this).find(".ui-slider-range").eq(range).css({
+							left: x1+'%',
+							width: (x2-x1)+'%'
+						});
+					}
+				})
+				.append('<div class="ui-slider-range ui-widget-header" style="left: 10%; width: 10%;"></div>')
+				.append('<div class="ui-slider-range ui-widget-header" style="left: 30%; width: 10%;"></div>');*/
+			});
 		</script>
 	</head>
 	<body>
 	
 		<div class="demo">
-			<div style="border:1px solid black;padding:2em;">
-				<div id="ranges" class="ui-widget-content ui-state-default ui-corner-all" style="padding:0.2em;">
-					<span class="ui-label">Lun.</span>
-					<div  class="ui-rangesbar ui-widget-content ui-corner-all" style="margin-left:36px;"></div>
-				</div>
-			</div>
+			<div id="ranges" class="ui-rangesbar ui-widget-content ui-corner-all"></div>
 		</div>
 		<!-- br/><br/>
 		<div class="demo">
