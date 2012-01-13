@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 4.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>jVitela 2.0</title>
+		<!--link type="text/css" href="../css/themes/smoothness/jquery-ui-1.8.16.css" rel="stylesheet"/-->
+		<link rel="stylesheet" href="http://code.jquery.com/ui/jquery-ui-git.css">
+		<link type="text/css" href="../../themes/base/jquery.uix.list.css" rel="stylesheet"/>
+		<style type="text/css">
+			Body {
+				font-size: 0.9em;
+			}
+		</style>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="../../uix/jquery.uix.list.js"></script>
+		<script type="text/javascript">
+			function toList() {
+				if( this.element[0].tagName=="SELECT" ) {
+					lst = $("<ul></ul>")
+							.addClass("ui-widget-content ui-list-content ui-corner-bl ui-corner-br")
+							.attr("tabindex",0);
+					this.element.before( lst );
+					this.element.children().each($.proxy(function(idx,itm){
+						$li = this._createItem( $(itm).text(),itm.value );
+						$li.data("value", itm.value);
+						lst.append( $li );
+					},this));
+					this.originalElem = this.element.hide();
+					this.element = lst;
+				}
+			}
+		
+			$(function(){
+				$("#Numbers").list({ 
+					multiselect:true, 
+					header:"Numbers", 
+					//optionTemplate: "<div><span class='ui-icon ui-icon-comment' style='float:left;'/>#{label}</div>" 
+				});
+				$("#Cars").list({ 
+					//header: "Cars",
+					multiselect:true 
+				});
+				$(".disable-nums").click(function(){
+					$("#Numbers").list("disable");
+				});
+				$(".enable-nums").click(function(){
+					$("#Numbers").list("enable");
+				});
+				$(".btn-add").click(function(){
+					var itm = "<li>"+$(".txt").val()+"</li>";
+					$("#Numbers").append(itm).list("refresh");
+				});
+				$(".btn-del").click(function(){
+					$("#Numbers")
+						.find("li.ui-selected")
+							.remove()
+							.end()
+						.list("refresh");
+				});
+			});
+			
+		</script>
+	</head>
+	<body>
+			<table>		
+				<tr><td>SHIFT</td><td>To focus or blur the list</td></tr>
+				<tr><td>DOWN,RIGHT</td><td> Move selected item down</td></tr>
+				<tr><td>UP,LEFT</td><td> Move selected item up</td></tr>
+				<tr><td>NEXT PAGE</td><td> Selected last item</td></tr>
+				<tr><td>PREV PAGE</td><td> Selected first item</td></tr>
+				<tr><td>CTRL + (DOWN,RIGHT)</td><td> Move item focus down</td></tr>
+				<tr><td>CTRL + (UP,LEFT)</td><td> Move item focus up</td></tr>
+				<tr><td>SHIFT + (DOWN,RIGHT)</td><td> Multiple select items down</td></tr>
+				<tr><td>SHIFT + (UP,LEFT)</td><td> Multiple select items up</td></tr>
+				<tr><td>SHIFT + NEXT PAGE</td><td> Multiple select all items from current pos to first item</td></tr>
+				<tr><td>SHIFT + PREV PAGE</td><td> Multiple select all items from current pos to last item</td></tr>
+				<tr><td>SPACE</td><td>Toggle selection for focused item</td></tr>
+				<tr><td>CTRL + SPACE</td><td>Toggle selection for focused item without deselecting others</td></tr>
+			</table>
+
+			<br/>
+			<button class="enable-nums">Enable</button>
+			<div style="width:10em;">
+				<ul id="Numbers">
+					<li>null</li>
+					<li>one</li>
+					<li>two</li>
+					<li>three</li>
+					<li>four</li>
+					<li>five</li>
+					<li>six</li>
+					<li>seven</li>
+					<li>eight</li>
+					<li>nine</li>
+					<li>then</li>
+				</ul>
+			</div>
+			<button class="disable-nums">Disable</button>
+			<input type="text" class="txt"/>
+			<button class="btn-add">add</button>
+			<button class="btn-del">del</button>
+
+			<hr/>
+			<div style="width:15em;">
+				<ul id="Cars">
+					<li>
+						<span>Swedish cars</span>
+						<ul>
+							<li>Volvo</li>
+							<li>Saab</li>
+						</ul>
+					</li>
+					<li>
+						<span>German cars</span>
+						<ul>
+							<li>mercedes</li>
+							<li>audi</li>
+							<li>bmw</li>
+							<li>porsche</li>
+						</ul>
+					</li>
+					<li>
+						<span>American cars</span>
+						<ul>
+							<li>opel</li>
+							<li>ford</li>
+							<li>chevy</li>
+							<li>cadillac</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+	</body>
+</html>

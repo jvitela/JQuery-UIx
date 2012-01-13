@@ -1,0 +1,25 @@
+
+.ui-panel-titlebar {
+	position: relative;
+}
+.ui-panel-title {
+	margin-left: 10px;
+}
+.ui-panel-content {
+	overflow: auto;
+}
+
+.ui-panel-titlebar-button {
+	position: absolute;
+	padding: 1px;
+	top: 3px;
+}
+
+.ui-panel-titlebar .ui-state-hover,
+.ui-panel-titlebar .ui-state-focus {
+	padding: 0px;
+}
+.ui-panel-content .ui-tabs {
+	border: 0px;
+}
+ 
